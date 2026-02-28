@@ -7,11 +7,10 @@ html,body {
   padding:35px;
   margin: 0;
   padding: 0;
-  background-size: cover;         
-  background-position: center;    
+  background-size: 100% auto;   /* Width = 100%, Height auto (keeps ratio) */
   background-repeat: no-repeat;
+  background-position: top center;
   background-attachment: fixed; 
-
 }
 .message{
 font-family: 'Segoe UI', sans-serif;
