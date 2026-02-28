@@ -3,13 +3,13 @@ html,body{
   font-family: 'Segoe UI', sans-serif;
  width:100%;
  height: 100vh;
-  overflow: hidden;
+  overflow-y:auto;
   padding:35px;
   margin: 0;
   padding: 0;
-  background-size: cover;         
-  background-position: center;    
+  background-size: 100% auto;   /* Width = 100%, Height auto (keeps ratio) */
   background-repeat: no-repeat;
+  background-position: top center;
   background-attachment: fixed; 
 }
 
