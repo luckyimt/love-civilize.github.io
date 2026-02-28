@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="indexstyle.css">
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+
+
+<body>
+<div class="home">
+  <div class="line-overlay"></div>
+</div>
+
+
+
+<div class="background">
+  <div class="hero"></div>
+  <div class="form-toggle-container">
+    <div class="toggle-buttons">
+    <button id="loginBtn" class="logout-button active">Login</button>
+    <button id="signupBtn">Signup</button>
+    </div>
+
+
+  <div class="forms">
+    <form id="loginForm" class="form">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" id="loginUsername-c"required />
+      <input type="password" placeholder="Password" id="loginPassword-c" required />
+      <button class="logout-button" onclick="login()">Login</button>
+    </form>
+
+    <form id="signupForm" class="form">
+      <h2>Signup</h2>
+      <input type="text" placeholder="Username" id="signupUsername-c" required />
+      <input type="password" placeholder="Password" id="signupPassword-c" required />
+      <button onclick="signup()" class="logout-button" >Signup</button>
+    </form>
+  </div>
+</div>
+ 
+
+
+<div class="message" id="message-c"></div>
+
+<div id="g_id_onload"
+data-client_id="959486326564-hi3up7jsnm3kkns1l6v2aivnc3hk12bg.apps.googleusercontent.com"
+data-callback="handleCredentialResponse"
+data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular">
+</div>
+
+
+</div><!--container-->
+
+
+
+<script>
+function handleCredentialResponse(response) {
+
+    const token = response.credential;
+
+    // Decode JWT
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    console.log(payload);
+
+    // Save user
+    localStorage.setItem("googleUser", JSON.stringify(payload));
+
+    alert("Welcome " + payload.name);
+
+    window.location.href = "dashboard.html";
+}
+</script>
+
+
+
+  <script>
+    function sendApiRequest() {
+      const address = document.getElementById('address').value;
+      const phone = document.getElementById('phone').value;
+
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ address, phone })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('response').textContent =
+          'Response:\n' + JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById('response').textContent =
+          'Error:\n' + error.toString();
+      });
+    }
+  </script>
+
+<script>
+// Helper: Get users from localStorage
+function getUsers() {
+  const users = localStorage.getItem('users-c');
+  return users ? JSON.parse(users) : {};
+}
+
+// Helper: Save users to localStorage
+function saveUsers(users) {
+  localStorage.setItem('users-c', JSON.stringify(users));
+}
+
+// Signup Function
+function signup() {
+  const username = document.getElementById('signupUsername-c').value;
+  const password = document.getElementById('signupPassword-c').value;
+  const message = document.getElementById('message');
+
+
+  if (!username || !password) {
+    message.textContent = 'Please fill in all fields.';
+    return;
+  }
+
+  const users = getUsers();
+  if (users[username]) {
+    message.textContent = 'Username already exists.';
+    return;
+  }
+
+  users[username] = password; // ❗ Storing password in plain text (for demo only)
+  saveUsers(users);
+  message.textContent = 'Signup successful! You can now log in.';
+}
+
+
+// Login Function
+function login() {
+
+
+    event.preventDefault();
+    const username = document.getElementById("loginUsername-c").value;
+    sessionStorage.setItem("loginUsername-c", username);
+
+  const password = document.getElementById('loginPassword-c').value;
+  const message = document.getElementById('message-c');
+
+
+  const users = getUsers();
+
+  if (users[username] && users[username] === password) {
+    // Optionally store logged-in user info
+    localStorage.setItem('loggedInUser-c', username);
+
+
+    // Redirect to your page
+    window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
+  } else {
+    message.textContent = 'Invalid username or password.';
+  }
+}
+
+</script>
+
+
+
+
+
+<script>
+const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
+const loginForm = document.getElementById('loginForm');
+const signupForm = document.getElementById('signupForm');
+
+loginBtn.addEventListener('click', () => {
+  loginBtn.classList.add('active');
+  signupBtn.classList.remove('active');
+  loginForm.classList.add('active');
+  signupForm.classList.remove('active');
+});
+
+signupBtn.addEventListener('click', () => {
+  signupBtn.classList.add('active');
+  loginBtn.classList.remove('active');
+  signupForm.classList.add('active');
+  loginForm.classList.remove('active');
+});
+</script>
+
+
+
+</body>
+</html>
+

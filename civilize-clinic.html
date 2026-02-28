@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="mainstyle.css">
+
+<script src="/analytics.js"></script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=ARf-RdlCTjnFCBXP-6s-dOK19oMSRmzdFHZ-PNUfHwecBnMksEhVVnaKPuIl-W3E8QyGOAdJnTwtG2-G&currency=USD"></script>
+
+
+</head>
+
+<body onload="loadCart()">
+
+<div class="menu">
+<h1 id="userDisplay"></h1>
+<button onclick="logout()"  class="logout-button">
+    <span class="logout-text">Logout</span>
+  </button>
+</div>
+
+  <script>
+    const username = sessionStorage.getItem('loginUsername-c');
+document.getElementById("userDisplay").textContent = username || "Guest";
+  </script>
+
+<div class="perimeter">
+<h1><span id="userDisplay"></span></h1>
+<div class="left-column">
+<div class="menu" onclick="showTab(0)">
+Plastic Surgery
+</div>
+<div class="menu" onclick="showTab(1)">
+Lips</div>
+<div class="menu" onclick="showTab(2)">
+aESTHETICS</div>
+<div id="cart"></div>
+<div id="total" class="total"></div>
+<button onclick="payNow()"  class="logout-button">
+    <span class="logout-text">paynow</span>
+  </button>
+  </div>//left
+<div class="right-column">
+<div class="tab-content" >
+<div class="image-grid" data-id="1" data-img="nose.jpg" data-name="plastic surgery" data-price="249">
+<div class="image-card">
+<img src="nose.jpg" alt="plastic surgery" class="img-product">
+<center><button class="fire-button" onclick="addToCart(1)"><h1>Add to booking.</h1></button></center>
+</div>
+</div>
+</div>
+<div class="tab-content" >
+<div class="image-grid" data-id="2" data-img="lips.jpg" data-name="lips" data-price="149">
+<div class="image-card">
+<img src="lips.jpg" alt="lips fulfilment" class="img-product">
+<center><button class="fire-button" onclick="addToCart(2)"><h1>Add to booking.</h1></button></center>
+</div>
+</div>
+</div>
+<div class="tab-content" >
+<div class="image-grid" data-id="3" data-img="aesthetic.jpg" data-name="aesthetic" data-price="49">
+<div class="image-card">
+<img src="aesthetic.jpg" alt="youth" class="img-product">
+<center><button class="fire-button" onclick="addToCart(3)"><h1>Add to booking.</h1></button></center>
+</div>
+</div>
+</div>
+
+</div>//right
+
+</div>//perimeter
+
+
+<script>localStorage.setItem('loggedInUser', username);
+</script>
+
+<script>
+let selectedCourse ="unselected";
+</script>
+
+<script>
+let selected = false;
+function addToCart(productId) {
+
+if(productId==1){
+selectedCourse = "plastic surgery";
+}
+else if(productId==2){
+selectedCourse = "lips";
+}
+else if(productId==3){
+selectedCourse = "aesthetic";
+}
+
+const product = document.querySelector(`.image-grid[data-id='${productId}']`);
+
+const price = parseFloat(product.getAttribute('data-price'));
+const image = product.getAttribute('data-img');
+
+       
+
+      const existingItem = cart.find(item => item.id === productId );
+      if (existingItem || selected ) {
+        alert("you have already choosen this order. You can select 1 at once to prevent un-equivalent services charge.");
+      } else {
+        cart.push({ img:image, id: productId, price});
+      } 
+      selected = true;
+      saveCart();
+      renderCart();
+
+}
+function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+selected = false;
+      saveCart();
+      renderCart();
+    }
+    
+function renderCart() 
+{
+   const cartContainer = document.getElementById('cart');
+   cartContainer.innerHTML = cart.map(item => `
+     <div class="cart-item">
+       <div><img src="${item.img}" class="cart-img"></div><div class="sum">= $${item.price.toFixed(2)} 
+ <button class="logout-button" onclick="removeFromCart(${item.id})">X</button>
+</div>
+                </div>
+     `).join('');
+     const total = cart.reduce((sum, item) => sum + item.price , 0);
+
+currentTotal = total;
+document.getElementById('total').textContent = total.toFixed(2);
+    }
+
+function saveCart() {
+localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function loadCart() {
+      const stored = localStorage.getItem('cart');
+      if (stored) {
+        cart = JSON.parse(stored);
+        renderCart();
+      }
+    }
+</script>
+
+<script>
+  function logout() {
+sessionStorage.clear();
+    window.location.href = 'index.html';
+  }
+</script>
+
+<script>
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.post("/webhook/paypal", async (req, res) => {
+    const body = req.body;
+
+    if (body.event_type === "PAYMENT.SALE.COMPLETED") {
+        const orderId = body.resource.parent_payment;
+        const payerEmail = body.resource.payer.payer_info.email;
+        const amount = body.resource.amount.total;
+
+        // Save to database
+        await saveOrderToDatabase(orderId, payerEmail, amount);
+
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(400);
+    }
+}
+);
+</script>
+
+<script>
+let currentTotal = 0;
+let cart =  [];
+</script>
+
+<script>
+paypal.Buttons({
+ style: {
+        layout: 'vertical',
+        color:  'blue',
+        shape:  'rect',
+        label:  'pay'
+      },
+  createOrder: function(data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: currentTotal.toFixed(2)
+        }
+      }]
+    });
+  },
+     onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            // ✅ Notify store owner here (via your backend)
+            fetch('/notify-store-owner', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    payerName: details.payer.name.given_name,
+                    payerEmail: details.payer.email_address,
+                    amount: details.purchase_units[0].amount.value
+                })
+            });
+            alert('Transaction completed by ' + details.payer.name.given_name);
+        });
+    }
+}).render('#paypal-button-container');
+
+</script>
+
+<script>
+function payNow() {
+ orderPlaceAlert(selectedCourse);
+}
+</script>
+
+<script>
+function showTab(index) {
+    const tabs = document.querySelectorAll('.logout-button');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+      contents[i].classList.toggle('active', i === index);
+    });
+  }
+</script>
+
+<script>
+  function orderPlaceAlert(course) {
+let total = 1;
+if(course=="plastic surgery"){
+    alert("pay $249. accept paypal users and credit cards.");
+ticketId = course;
+total=249;
+  }
+else if(course=="lips"){
+    alert("pay $149. accept paypal users and credit cards.");
+ticketId = course;
+total=149;
+}
+
+else if(course=="aesthetic"){
+    alert("pay $49. accept paypal users and credit cards.");
+ticketId = course;
+total=49;
+}
+window.location.href = `ticket.html?ticketId=${encodeURIComponent(ticketId)}&user=${encodeURIComponent(username)}&total=${encodeURIComponent(total)}`;
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</body>
+</html>
+

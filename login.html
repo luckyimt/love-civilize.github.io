@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Login - Koder</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<div id="g_id_onload"
+     data-client_id="959486326564-grc5fob788869jobk1mq6st383m4ctn.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular">
+</div>
+
+<script>
+function handleCredentialResponse(response) {
+
+    const token = response.credential;
+
+    // Decode JWT
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    console.log(payload);
+
+    // Save user
+    localStorage.setItem("googleUser", JSON.stringify(payload));
+
+    alert("Welcome " + payload.name);
+
+    window.location.href = "dashboard.html";
+}
+</script>
+</head>
+<body>
+
+<h2>Login with Google</h2>
+
+<div id="g_id_onload"
+     data-client_id="959486326564-grc5fob788869jobk1mq6st383m4ctn.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular">
+</div>
+
+<script>
+function handleCredentialResponse(response) {
+
+    const token = response.credential;
+
+    // Decode JWT
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    console.log(payload);
+
+    // Save user
+    localStorage.setItem("googleUser", JSON.stringify(payload));
+
+    alert("Welcome " + payload.name);
+
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
