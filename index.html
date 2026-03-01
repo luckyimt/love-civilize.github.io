@@ -9,58 +9,47 @@
 
 
 <body>
-<div class="home">
-  <div class="line-overlay"></div>
-</div>
-
 
 
 <div class="background">
   <div class="hero"></div>
   <div class="form-toggle-container">
     <div class="toggle-buttons">
-    <button id="loginBtn" class="logout-button active">Login</button>
-    <button id="signupBtn">Signup</button>
+    <button id="loginBtn" class="toggle-buttons active">Login</button>
+    <button id="signupBtn" class="toggle-buttons">Signup</button>
     </div>
 
 
+
+<section class="beauty-box">
+
   <div class="forms">
-    <form id="loginForm" class="form">
+ <center><form id="loginForm" class="form active">
+ <div class="input-group">
       <h2>Login</h2>
       <input type="text" placeholder="Username" id="loginUsername-c"required />
       <input type="password" placeholder="Password" id="loginPassword-c" required />
       <button class="logout-button" onclick="login()">Login</button>
+</div>
     </form>
 
     <form id="signupForm" class="form">
+ <div class="input-group">
       <h2>Signup</h2>
       <input type="text" placeholder="Username" id="signupUsername-c" required />
       <input type="password" placeholder="Password" id="signupPassword-c" required />
-      <button onclick="signup()" class="logout-button" >Signup</button>
+      <button class="logout-button" onclick="signup()">Signup</button>
+</div>
     </form>
+</center>
+
   </div>
 </div>
- 
 
+</section>
 
-<div class="message" id="message-c"></div>
-
-<div id="g_id_onload"
-data-client_id="959486326564-hi3up7jsnm3kkns1l6v2aivnc3hk12bg.apps.googleusercontent.com"
-data-callback="handleCredentialResponse"
-data-auto_prompt="false">
+  </div>
 </div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-size="large"
-     data-theme="outline"
-     data-text="sign_in_with"
-     data-shape="rectangular">
-</div>
-
-
-</div><!--container-->
 
 
 
