@@ -1,19 +1,25 @@
 html,body {
   background-image: url("indexbg.jpg");
-  font-family: 'Segoe UI', sans-serif;
  width:100%;
  height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   padding:35px;
   margin: 0;
   padding: 0;
   background-size: 100% auto;   /* Width = 100%, Height auto (keeps ratio) */
+
+  background-position: center;    
   background-repeat: no-repeat;
-  background-position: top center;
   background-attachment: fixed; 
+
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins', sans-serif;
 }
+
 .message{
-font-family: 'Segoe UI', sans-serif;
 font-size:35px;
 color:white;
 background-image: repeating-linear-gradient(
@@ -28,7 +34,6 @@ background-image: repeating-linear-gradient(
 
 
 h1{
-font-family: 'Segoe UI', sans-serif;
 font-size:35px;
 color:white;
 background-image: repeating-linear-gradient(
@@ -41,7 +46,6 @@ background-image: repeating-linear-gradient(
 }
 
 h2 {
-font-family: 'Segoe UI', sans-serif;
 font-size:28px;
 color:white;
 position:relative;
@@ -57,12 +61,7 @@ background-image: repeating-linear-gradient(
 
 
 .form-toggle-container {
-align-content:center;
-justify-content:center;
-  width: 300px;
-  margin: auto;
-  font-family: sans-serif;
-padding:50px;
+  width: auto;
 }
 
 .toggle-buttons {
@@ -76,7 +75,6 @@ padding:50px;
   cursor: pointer;
   border: 1px solid #ccc;
   background: #f1f1f1;
-font-family: 'Segoe UI', sans-serif;
 font-size:20px;
 color:#ffbbbb;
   font-weight: thin;
@@ -86,7 +84,6 @@ color:#ffbbbb;
 .toggle-buttons .active {
   font-weight: bold;
   background: #ffbbbb;
-font-family: 'Segoe UI', sans-serif;
 font-size:25px;
   color: white;
   border: none;
@@ -94,6 +91,9 @@ font-size:25px;
 
 .forms {
   margin-top: 20px;
+    justify-content:center;
+    align-items:center;
+
 }
 
 .form {
@@ -108,4 +108,111 @@ input, button[type="submit"] {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
+}
+
+
+
+
+/* ===== Square Area ===== */
+.beauty-box{
+    position:relative;
+    height:auto;
+    width:100%;
+
+/* Perfect square */
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.4);
+}
+
+/* ===== Corner Borders ===== */
+.beauty-box::before,
+.beauty-box::after{
+    content:"";
+    position:absolute;
+    width:60px;
+    height:60px;
+    border:2px solid #e7b7c9;
+}
+
+.beauty-box::before{
+    top:-8px;
+    left:-8px;
+    border-right:none;
+    border-bottom:none;
+}
+
+.beauty-box::after{
+    bottom:-8px;
+    right:-8px;
+    border-left:none;
+    border-top:none;
+}
+
+/* extra corners */
+.corner{
+    position:absolute;
+    width:60px;
+    height:60px;
+    border:2px solid #e7b7c9;
+}
+
+.corner.top-right{
+    top:-8px;
+    right:-8px;
+    border-left:none;
+    border-bottom:none;
+}
+
+.corner.bottom-left{
+    bottom:-8px;
+    left:-8px;
+    border-right:none;
+    border-top:none;
+}
+
+/* ===== Inputs ===== */
+.input-group{
+    justify-content:center;
+    align-items:center;
+    width:70%;
+}
+
+input{
+
+    width:100%;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid #eee;
+    outline:none;
+    font-size:15px;
+    background:#ffffffcc;
+
+    transition:all .35s ease;
+    box-shadow:0 5px 12px rgba(0,0,0,0.04);
+}
+
+/* modern focus effect */
+input:focus{
+    border-color:#e7b7c9;
+    box-shadow:
+        0 0 0 3px rgba(231,183,201,0.25),
+        0 8px 20px rgba(0,0,0,0.08);
+    transform:translateY(-2px);
+}
+
+/* placeholder style */
+input::placeholder{
+    color:#b9a8b0;
+    font-weight:300;
 }
