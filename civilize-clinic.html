@@ -20,7 +20,7 @@
 </div>
 
   <script>
-    const username = sessionStorage.getItem('loginUsername-c');
+    const username = sessionStorage.getItem('loginUser');
 document.getElementById("userDisplay").textContent = username || "Guest";
   </script>
 
@@ -74,9 +74,17 @@ cosmetic</div>
 
 </div>
 
-
-<script>localStorage.setItem('loggedInUser', username);
+<script>
+window.onload = function() {
+    const savedUser = getCookie("loginUser");
+    if (savedUser) {
+        document.getElementById("userDisplay").textContent = savedUser || "Guest";
+;
+    }
+};
 </script>
+
+
 
 <script>
 let selectedCourse ="unselected";
@@ -150,7 +158,7 @@ function loadCart() {
 
 <script>
   function logout() {
-sessionStorage.clear();
+    sessionStorage.clear();
     window.location.href = 'index.html';
   }
 </script>
