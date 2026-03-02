@@ -67,6 +67,7 @@ background-image: repeating-linear-gradient(
 }
 
 .tabmenu{
+  font-size: 19px;
 color:white;
 position:relative;
 width:auto;
@@ -105,6 +106,7 @@ height:100dvh;
     }
 
 .left-column {
+  font-size: 19px;
   width: auto;
   display: flex;
   flex-direction:column;
