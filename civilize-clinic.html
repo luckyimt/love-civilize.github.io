@@ -74,8 +74,9 @@ cosmetic</div>
 
 
 <script>
+const username = sessionStorage.getItem('logged');
+document.getElementById("userDisplay").textContent = username || "Guest";
 
-const username = "userDisplay";
 window.onload = function() {
     const savedUser = getCookie("logged");
     if (savedUser) {
