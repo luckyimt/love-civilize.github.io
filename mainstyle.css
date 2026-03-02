@@ -189,10 +189,25 @@ flex-direction:rows;
       font-family:monospace;
 color:rgba(255,255,255,1);
 
+
 }
 
-.menu : hover
+.menu-description{
+    position:absolute;
+    left:110%;
+    top:50%;
+    transform:translateY(-50%);
+    background:#111;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    font-size:12px;
+    white-space:nowrap;
 
+    opacity:0;
+    pointer-events:none;
+    transition:0.25s ease;
+}
 
 
 
