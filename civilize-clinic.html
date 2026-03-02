@@ -12,14 +12,7 @@
 
 <body onload="loadCart()">
   
-<script>
-window.onload = function() {
-    const savedUser = getCookie("logged");
-    if (savedUser) {
-        document.getElementById("userDisplay").value = savedUser || "Guest";
-    }
-};
-</script>
+
 <div class="menu">
 <div id="userDisplay"></div>
 <button onclick="logout()"  class="logout-button">
@@ -80,7 +73,14 @@ cosmetic</div>
 
 
 
-
+<script>
+window.onload = function() {
+    const savedUser = getCookie("logged");
+    if (savedUser) {
+        document.getElementById("userDisplay").value = savedUser || "Guest";
+    }
+};
+</script>
 
 <script>
 let selectedCourse ="unselected";
