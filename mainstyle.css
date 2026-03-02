@@ -180,8 +180,7 @@ display: grid;
 color:rgba(255,255,255,1);
 }
 .menu{
-  
-  font-size:35px;
+font-size:35px;
 padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
 display:flex;
 align-content:space-between;
@@ -189,7 +188,15 @@ flex-direction:rows;
       font-weight:bold;
       font-family:monospace;
 color:rgba(255,255,255,1);
+
 }
+
+.menu : hover
+
+
+
+
+A surgical procedure that reshapes or reconstructs the nose for cosmetic or functional purposes.
 
 .tab.active {
       border : 2px solid #fff;
@@ -277,6 +284,28 @@ opacity:0.724;
   border-radius: 20px;
   transition: opacity 0.3s ease;
 }
+
+
+.card{
+    width: 250px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+.description{
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
 
