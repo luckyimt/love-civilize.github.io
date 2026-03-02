@@ -150,7 +150,7 @@ function login() {
   if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
     //setCookie("loginUser", username, 3);
- setCookie("loginUser", "logged", 3);
+document.cookie = "username=users[username]; path=/";
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
   } else {
