@@ -187,7 +187,6 @@ padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
 display:flex;
 align-content:space-between;
 flex-direction:rows;
-  		font-size: 19px;
       font-weight:bold;
       font-family:monospace;
 color:rgba(255,255,255,1);
