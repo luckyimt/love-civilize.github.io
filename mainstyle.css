@@ -11,8 +11,23 @@ font-size: 19px;
  width:100%;
  height: 100dvh;
 overflow:hidden;
-
 }
+
+.pay-button{
+    display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  color: white;
+  font-size: 42px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
 
 
 .video-hero{
