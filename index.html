@@ -151,7 +151,7 @@ function login() {
     // Optionally store logged-in user info
     localStorage.setItem('loggedInUser-c', username);
     //setCookie("loginUser", username, 3);
-document.cookie = users[username] + "=" + password + ";" + 365 + ";path=/";
+document.cookie = token + "=" + users[username] + ";" + 365 + ";path=/";
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
   } else {
