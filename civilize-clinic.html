@@ -188,6 +188,21 @@ app.post("/webhook/paypal", async (req, res) => {
 </script>
 
 <script>
+const card = document.querySelector('.card');
+const description = document.querySelector('.description');
+
+card.addEventListener('mouseenter', () => {
+    description.style.opacity = "1";
+    description.style.maxHeight = "100px";
+});
+
+card.addEventListener('mouseleave', () => {
+    description.style.opacity = "0";
+    description.style.maxHeight = "0";
+});
+</script>
+
+<script>
 let currentTotal = 0;
 let cart =  [];
 </script>
