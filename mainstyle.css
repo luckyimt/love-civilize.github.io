@@ -96,7 +96,6 @@ border-left: 1px solid rgba(255, 255, 255, 0.1);
   background-image: url("mainbg.jpg");
 background-size: 100% auto;   /* Width = 100%, Height auto (keeps ratio) */
   background-repeat: no-repeat;
-  background-position: center;
   background-attachment: fixed; 
 overflow-y:auto;
 overflow-x:hidden;
