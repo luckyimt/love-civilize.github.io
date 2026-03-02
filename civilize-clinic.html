@@ -26,6 +26,7 @@
 <div class="left-column">
 <div class="menu" onclick="showTab(0)">
 Rhinoplasty</div>
+  <div class="menu-description">Go to the homepage overview.</div>
 <div class="menu" onclick="showTab(1)">
 lips</div>
 <div class="menu" onclick="showTab(2)">
@@ -188,17 +189,18 @@ app.post("/webhook/paypal", async (req, res) => {
 </script>
 
 <script>
-const card = document.querySelector('.card');
-const description = document.querySelector('.description');
+document.querySelectorAll('.menu').forEach(item => {
 
-card.addEventListener('mouseenter', () => {
-    description.style.opacity = "1";
-    description.style.maxHeight = "100px";
-});
+    const desc = item.querySelector('.menu-description');
 
-card.addEventListener('mouseleave', () => {
-    description.style.opacity = "0";
-    description.style.maxHeight = "0";
+    item.addEventListener('mouseenter', () => {
+        desc.style.opacity = "1";
+    });
+
+    item.addEventListener('mouseleave', () => {
+        desc.style.opacity = "0";
+    });
+
 });
 </script>
 
