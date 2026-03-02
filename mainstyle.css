@@ -121,8 +121,8 @@ height:100dvh;
     }
 
 .left-column {
-  font-size: 19px;
-  width: 100%;
+  font-size: 30px;
+  width: auto;
   display: flex;
   flex-direction:column;
   height: 100dvh;
