@@ -16,7 +16,7 @@
 window.onload = function() {
     const savedUser = getCookie("logged");
     if (savedUser) {
-        document.getElementById("userDisplay").textContent = savedUser || "Guest";
+        document.getElementById("userDisplay").value = savedUser || "Guest";
     }
 };
 </script>
