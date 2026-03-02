@@ -26,11 +26,11 @@
 <div class="left-column">
 <div class="menu" onclick="showTab(0)">
 Rhinoplasty</div>
-  <div class="menu-description">Go to the homepage overview.</div>
 <div class="menu" onclick="showTab(1)">
 lips</div>
 <div class="menu" onclick="showTab(2)">
 cosmetic</div>
+
 <div id="cart" class="menu"></div>
 <div id="total" class="total"></div>
 <button onclick="payNow()"  class="logout-button">
@@ -188,21 +188,6 @@ app.post("/webhook/paypal", async (req, res) => {
 );
 </script>
 
-<script>
-document.querySelectorAll('.menu').forEach(item => {
-
-    const desc = item.querySelector('.menu-description');
-
-    item.addEventListener('mouseenter', () => {
-        desc.style.opacity = "1";
-    });
-
-    item.addEventListener('mouseleave', () => {
-        desc.style.opacity = "0";
-    });
-
-});
-</script>
 
 <script>
 let currentTotal = 0;
