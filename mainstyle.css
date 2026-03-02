@@ -9,7 +9,6 @@ background-size: auto 100%;   /* Width = 100%, Height auto (keeps ratio) */
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 background-color:#121212;
-font-size: 19px;
   font-family: 'Segoe UI', sans-serif;
  width:100%;
  height: 100dvh;
@@ -63,7 +62,7 @@ overflow:hidden;
 }
 
 h1{
-font-size:19px;
+font-size:30px;
 color:white;
 background-image: repeating-linear-gradient(
     120deg,
