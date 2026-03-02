@@ -181,6 +181,8 @@ display: grid;
 color:rgba(255,255,255,1);
 }
 .menu{
+  
+  font-size:35px;
 padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
 display:flex;
 align-content:space-between;
