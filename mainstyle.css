@@ -14,7 +14,9 @@ overflow:hidden;
 }
 
 .pay-button{
-    display: flex;
+  padding:18px;
+  text-align: center;
+  display: flex;
   align-items: center;
   gap: 12px;
   background: rgba(255, 255, 255, 0.08);
@@ -22,6 +24,7 @@ overflow:hidden;
   backdrop-filter: blur(10px);
   border-radius: 50px;
   color: white;
+  font-weight:bold;
   font-size: 42px;
   letter-spacing: 1px;
   cursor: pointer;
