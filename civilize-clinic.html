@@ -25,50 +25,54 @@ document.getElementById("userDisplay").textContent = username || "Guest";
   </script>
 
 <div class="perimeter">
-<h1><span id="userDisplay"></span></h1>
+
 <div class="left-column">
 <div class="menu" onclick="showTab(0)">
-Plastic Surgery
-</div>
+nose</div>
 <div class="menu" onclick="showTab(1)">
-Lips</div>
+lips</div>
 <div class="menu" onclick="showTab(2)">
-aESTHETICS</div>
+cosmetic</div>
 <div id="cart"></div>
 <div id="total" class="total"></div>
 <button onclick="payNow()"  class="logout-button">
-    <span class="logout-text">paynow</span>
-  </button>
-  </div>//left
+<span class="logout-text">paynow</span>
+</button>
+</div>
+
 <div class="right-column">
+
 <div class="tab-content" >
 <div class="image-grid" data-id="1" data-img="nose.jpg" data-name="plastic surgery" data-price="249">
 <div class="image-card">
-<img src="nose.jpg" alt="plastic surgery" class="img-product">
-<center><button class="fire-button" onclick="addToCart(1)"><h1>Add to booking.</h1></button></center>
+<center>
+<img src="nose.jpg" alt="plastic surgery" class="img-product" onclick="addToCart(1)">
+</center>
 </div>
 </div>
 </div>
 <div class="tab-content" >
 <div class="image-grid" data-id="2" data-img="lips.jpg" data-name="lips" data-price="149">
 <div class="image-card">
-<img src="lips.jpg" alt="lips fulfilment" class="img-product">
-<center><button class="fire-button" onclick="addToCart(2)"><h1>Add to booking.</h1></button></center>
+<center>
+<img src="lips.jpg" alt="lips fulfilment" class="img-product-lips" onclick="addToCart(2)">
+</center>
 </div>
 </div>
 </div>
-<div class="tab-content" >
+<div class="tab-content">
 <div class="image-grid" data-id="3" data-img="aesthetic.jpg" data-name="aesthetic" data-price="49">
 <div class="image-card">
-<img src="aesthetic.jpg" alt="youth" class="img-product">
-<center><button class="fire-button" onclick="addToCart(3)"><h1>Add to booking.</h1></button></center>
+<center>
+<img src="aesthetic.jpg" alt="youth" class="img-product" onclick="addToCart(3)">
+</center>
 </div>
 </div>
 </div>
 
-</div>//right
+</div>
 
-</div>//perimeter
+</div>
 
 
 <script>localStorage.setItem('loggedInUser', username);
@@ -97,11 +101,9 @@ const product = document.querySelector(`.image-grid[data-id='${productId}']`);
 const price = parseFloat(product.getAttribute('data-price'));
 const image = product.getAttribute('data-img');
 
-       
-
       const existingItem = cart.find(item => item.id === productId );
       if (existingItem || selected ) {
-        alert("you have already choosen this order. You can select 1 at once to prevent un-equivalent services charge.");
+        alert("You can select 1 choice. To prevent overcharge rate.");
       } else {
         cart.push({ img:image, id: productId, price});
       } 
@@ -244,7 +246,8 @@ if(course=="plastic surgery"){
     alert("pay $249. accept paypal users and credit cards.");
 ticketId = course;
 total=249;
-  }
+}
+
 else if(course=="lips"){
     alert("pay $149. accept paypal users and credit cards.");
 ticketId = course;
