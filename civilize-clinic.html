@@ -72,7 +72,7 @@ cosmetic</div>
 
 <script>
 window.onload = function() {
-    const savedUser = getCookie("token");
+    const savedUser = getCookie("loginUser");
     if (savedUser) {
         document.getElementById("userDisplay").textContent = savedUser || "Guest";
 ;
