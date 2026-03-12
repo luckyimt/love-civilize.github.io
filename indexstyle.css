@@ -27,28 +27,16 @@ color:white;
 
 
 h1{
-font-size:35px;
+font-size:26px;
 color:white;
-background-image: repeating-linear-gradient(
-    120deg,
-    rgba(0, 200, 100, 0.2) 1px,
-    rgba(0, 255, 155, 0.5) 2px,
-    transparent 2px,
-    transparent 10px
-  );
+
 }
 
 h2 {
-font-size:28px;
+font-size:24px;
 color:white;
 position:relative;
-background-image: repeating-linear-gradient(
-    120deg,
-    rgba(0, 200, 100, 0.2) 1px,
-    rgba(0, 255, 155, 0.5) 2px,
-    transparent 2px,
-    transparent 10px
-  );
+
   
 }
 
