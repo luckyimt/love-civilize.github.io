@@ -5,6 +5,7 @@
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
+
 <body>
 <div class="background">
   <div class="hero"></div>
@@ -56,7 +57,6 @@ data-theme="outline">
 
 
 <script>
-// Helper: Get users from localStorage
 
 function getUsers(){
   const users = localStorage.getItem('username-civi');
@@ -65,7 +65,7 @@ function getUsers(){
 
 // Helper: Save users to localStorage
 function saveUsers(users) {
-  localStorage.setItem('username-civi', users);
+  localStorage.setItem('username-civi', users );
 }
 
 // Signup Function
@@ -85,7 +85,8 @@ function signup() {
   }
   users[username] = password; // ❗ Storing password in plain text (for demo only)
   saveUsers(users);
-  message.textContent = 'Signup successful! You can now log in.';
+  window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
+
 }
 
 // Login Function
@@ -101,7 +102,6 @@ function login() {
     if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
     localStorage.setItem('loggedIn', username);
-
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
   } else {
