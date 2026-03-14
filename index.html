@@ -59,7 +59,7 @@ data-theme="outline">
 // Helper: Get users from localStorage
 
 function getUsers(){
-  const users = localStorage.getItem('ecom_user');
+  const users = localStorage.getItem('users');
   return users ? JSON.parse(users) : {};
 }
 
@@ -68,7 +68,7 @@ function saveUsers(users) {
   const userData = {
         name:users,
         };
-  localStorage.setItem('ecom_user', JSON.stringify(userData));
+  localStorage.setItem('users', JSON.stringify(userData));
 }
 
 // Signup Function
