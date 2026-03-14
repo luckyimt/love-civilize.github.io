@@ -3,7 +3,10 @@
 <head>
  <link rel="stylesheet" href="indexstyle.css">
 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
 
 </head>
 
@@ -21,6 +24,21 @@
 
 
 
+
+
+<h2>Login to Store</h2>
+<div id="g_id_onload"
+data-client_id="YOUR_GOOGLE_CLIENT_ID"
+data-callback="handleLogin">
+</div>
+
+<div class="g_id_signin"
+data-size="large"
+data-theme="outline">
+</div>
+
+
+
 <section class="beauty-box">
 
   <div class="forms">
@@ -29,9 +47,7 @@
       <h2>Login</h2>
       <input type="text" placeholder="Username" id="loginUsername-c"required />
       <input type="password" placeholder="Password" id="loginPassword-c" required />
-  <div class="toggle-buttons">
-      <button class="toggle-buttons" onclick="login()">Login</button>
-   </div>
+      <button class="logout-button" onclick="login()">Login</button>
 </div>
     </form>
 
@@ -40,9 +56,7 @@
       <h2>Signup</h2>
       <input type="text" placeholder="Username" id="signupUsername-c" required />
       <input type="password" placeholder="Password" id="signupPassword-c" required />
-  <div class="toggle-buttons">
-      <button class="toggle-buttons" onclick="signup()">Signup</button>
-   </div>
+      <button class="logout-button" onclick="signup()">Signup</button>
 </div>
     </form>
 </center>
@@ -54,6 +68,10 @@
 
   </div>
 </div>
+
+
+
+
 
 
 
@@ -104,15 +122,38 @@ function handleCredentialResponse(response) {
 
 <script>
 // Helper: Get users from localStorage
+
+
+function getUser(){
+return JSON.parse(localStorage.getItem("ecom_user"));
+}
+
+
 function getUsers() {
   const users = localStorage.getItem('users-c');
   return users ? JSON.parse(users) : {};
 }
 
+
 // Helper: Save users to localStorage
+
+
 function saveUsers(users) {
   localStorage.setItem('users-c', JSON.stringify(users));
 }
+
+
+function saveUser(user){
+const userData = {
+name:user.name,
+email:user.email,
+picture:user.picture
+};
+
+localStorage.setItem("ecom_user", JSON.stringify(userData));
+
+}
+
 
 // Signup Function
 function signup() {
@@ -140,24 +181,35 @@ function signup() {
 
 // Login Function
 function login() {
+
+
     event.preventDefault();
     const username = document.getElementById("loginUsername-c").value;
+    sessionStorage.setItem("loginUsername-c", username);
+
   const password = document.getElementById('loginPassword-c').value;
   const message = document.getElementById('message-c');
+
+
   const users = getUsers();
 
   if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
-    //setCookie("loginUser", username, 3);
-    sessionStorage.setItem("logged", username);
-    document.cookie = "logged"+"="+username+"; path=/; Secure; SameSite=Strict";
+    localStorage.setItem('loggedInUser-c', username);
+
+
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
   } else {
     message.textContent = 'Invalid username or password.';
   }
 }
+
 </script>
+
+
+
+
 
 <script>
 const loginBtn = document.getElementById('loginBtn');
@@ -179,6 +231,24 @@ signupBtn.addEventListener('click', () => {
   loginForm.classList.remove('active');
 });
 </script>
+
+
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
