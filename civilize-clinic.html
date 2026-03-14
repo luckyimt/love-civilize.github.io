@@ -72,13 +72,12 @@ cosmetic</div>
 
 <script>
 let selectedCourse ="unselected";
-const username = localStorage.getItem('loggedInUser');
+const username = localStorage.getItem('loggedIn');
 document.getElementById("userDisplay").textContent = username || "Guest";
 let selected = false;
 
 function addToCart(productId) {
 const key = "cart_" + username;
-
 let cart = JSON.parse(localStorage.getItem(key)) || [];
 
 if(productId==1){
