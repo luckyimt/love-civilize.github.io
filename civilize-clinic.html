@@ -11,30 +11,27 @@
 </head>
 
 <body onload="loadCart()">
-  
 
 <div class="menu">
-<div id="userDisplay"></div>
+<h1 id="userDisplay"></h1>
 <button onclick="logout()"  class="logout-button">
     <span class="logout-text">Logout</span>
   </button>
 </div>
 
-
 <div class="perimeter">
 
 <div class="left-column">
 <div class="menu" onclick="showTab(0)">
-Rhinoplasty</div>
+nose</div>
 <div class="menu" onclick="showTab(1)">
 lips</div>
 <div class="menu" onclick="showTab(2)">
 cosmetic</div>
-
 <div id="cart" class="menu"></div>
 <div id="total" class="total"></div>
 <button onclick="payNow()"  class="logout-button">
-<span>paynow</span>
+<h1>get ticket</h1>
 </button>
 </div>
 
@@ -44,7 +41,7 @@ cosmetic</div>
 <div class="image-grid" data-id="1" data-img="nose.jpg" data-name="plastic surgery" data-price="249">
 <div class="image-card">
 <center>
-<img src="nose.jpg" alt="Rhynoplasty" onclick="addToCart(1)">
+<img src="nose.jpg" alt="plastic surgery" class="img-product" onclick="addToCart(1)">
 </center>
 </div>
 </div>
@@ -53,7 +50,7 @@ cosmetic</div>
 <div class="image-grid" data-id="2" data-img="lips.jpg" data-name="lips" data-price="149">
 <div class="image-card">
 <center>
-<img src="lips.jpg" alt="lips fulfilment"  onclick="addToCart(2)">
+<img src="lips.jpg" alt="lips fulfilment" class="img-product-lips" onclick="addToCart(2)">
 </center>
 </div>
 </div>
@@ -62,7 +59,7 @@ cosmetic</div>
 <div class="image-grid" data-id="3" data-img="aesthetic.jpg" data-name="aesthetic" data-price="49">
 <div class="image-card">
 <center>
-<img src="aesthetic.jpg" alt="youth"  onclick="addToCart(3)">
+<img src="aesthetic.jpg" alt="youth" class="img-product" onclick="addToCart(3)">
 </center>
 </div>
 </div>
@@ -73,26 +70,16 @@ cosmetic</div>
 </div>
 
 
-
-<script>
-const username = sessionStorage.getItem('logged');
-document.getElementById("userDisplay").textContent = username || "Guest";
-
-window.onload = function() {
-    const savedUser = getCookie("logged");
-    if (savedUser) {
-        document.getElementById("userDisplay").value = savedUser || "Guests";
-    }
-};
-</script>
-
 <script>
 let selectedCourse ="unselected";
-</script>
-
-<script>
+const username = localStorage.getItem('loggedInUser');
+document.getElementById("userDisplay").textContent = username || "Guest";
 let selected = false;
+
 function addToCart(productId) {
+const key = "cart_" + username;
+
+let cart = JSON.parse(localStorage.getItem(key)) || [];
 
 if(productId==1){
 selectedCourse = "plastic surgery";
@@ -115,11 +102,12 @@ const image = product.getAttribute('data-img');
       } else {
         cart.push({ img:image, id: productId, price});
       } 
+localStorage.setItem(key, JSON.stringify(cart));
       selected = true;
       saveCart();
       renderCart();
-
 }
+
 function removeFromCart(productId) {
       cart = cart.filter(item => item.id !== productId);
 selected = false;
@@ -132,7 +120,7 @@ function renderCart()
    const cartContainer = document.getElementById('cart');
    cartContainer.innerHTML = cart.map(item => `
      <div class="cart-item">
-       <div><img src="${item.img}" class="cart-img"></div><div class="sum">= $${item.price.toFixed(2)} 
+       <div>${item.name}</div><div class="sum">= $${item.price.toFixed(2)} 
  <button class="logout-button" onclick="removeFromCart(${item.id})">X</button>
 </div>
                 </div>
@@ -147,20 +135,30 @@ function saveCart() {
 localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+function loadCart(){
+const key = "cart_" + username;
+
+return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+
 function loadCart() {
-      const stored = localStorage.getItem('cart');
+const key = "cart_" + username;
+      const stored = localStorage.getItem(key);
       if (stored) {
         cart = JSON.parse(stored);
         renderCart();
       }
     }
+
+function logout() 
+{
+localStorage.clear();
+    window.location.href = 'index.html';
+}
 </script>
 
-<script>
-  function logout() {
-    window.location.href = 'index.html';
-  }
-</script>
+
 
 <script>
 const express = require('express');
@@ -187,7 +185,6 @@ app.post("/webhook/paypal", async (req, res) => {
 }
 );
 </script>
-
 
 <script>
 let currentTotal = 0;
@@ -232,13 +229,12 @@ paypal.Buttons({
 
 <script>
 function payNow() {
-  if(selected){
- orderPlaceAlert(selectedCourse);
-  }
+if(selected)
+{
+orderPlaceAlert(selectedCourse)
+;
 }
-</script>
-
-<script>
+}
 function showTab(index) {
     const tabs = document.querySelectorAll('.menu');
     const contents = document.querySelectorAll('.tab-content');
@@ -247,10 +243,9 @@ function showTab(index) {
       contents[i].classList.toggle('active', i === index);
     });
   }
-</script>
 
-<script>
-  function orderPlaceAlert(course) {
+function orderPlaceAlert(course)
+{
 let total = 1;
 if(course=="plastic surgery"){
     alert("pay $249. accept paypal users and credit cards.");
