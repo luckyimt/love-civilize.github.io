@@ -58,15 +58,23 @@ data-theme="outline">
 
 <script>
 
-function getUsers(){
-  const users = localStorage.getItem('username-civi');
+
+
+
+function getUsers() {
+  const users = localStorage.getItem('users-c');
   return users ? JSON.parse(users) : {};
 }
 
+
 // Helper: Save users to localStorage
+
+
 function saveUsers(users) {
-  localStorage.setItem('username-civi', users );
+  localStorage.setItem('users-c', JSON.stringify(users));
 }
+
+
 
 // Signup Function
 function signup() {
