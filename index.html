@@ -93,12 +93,8 @@ function signup() {
     message.textContent = 'Username already exists.';
     return;
   }
-
   users[username] = password; // ❗ Storing password in plain text (for demo only)
   saveUsers(users);
-  localStorage.setItem('loggedInUser-c', username);
-    // Redirect to your page
-  window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
 }
 
 
@@ -123,7 +119,6 @@ function login() {
   if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
     localStorage.setItem('loggedInUser-c', username);
-
 
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
