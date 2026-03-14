@@ -97,7 +97,6 @@ function login() {
       message.textContent = 'Please fill in all fields.';
     return;
     }
-
     const users = getUsers();
     if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
