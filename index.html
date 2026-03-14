@@ -104,7 +104,7 @@ function login() {
     const users = getUsers();
     if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
-    localStorage.setItem('loggedInUser-c', username);
+    localStorage.setItem('loggedIn', username);
 
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
