@@ -59,16 +59,13 @@ data-theme="outline">
 // Helper: Get users from localStorage
 
 function getUsers(){
-  const users = localStorage.getItem('users');
+  const users = localStorage.getItem('username-civi');
   return users ? JSON.parse(users) : {};
 }
 
 // Helper: Save users to localStorage
 function saveUsers(users) {
-  const userData = {
-        name:users,
-        };
-  localStorage.setItem('users', JSON.stringify(userData));
+  localStorage.setItem('username-civi', (users));
 }
 
 // Signup Function
@@ -112,6 +109,9 @@ function login() {
     message.textContent = 'Invalid username or password.';
   }
 }
+</script>
+
+<script>
 
 const loginBtn = document.getElementById('loginBtn');
 const signupBtn = document.getElementById('signupBtn');
