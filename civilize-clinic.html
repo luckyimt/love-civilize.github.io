@@ -100,7 +100,6 @@ const name = product.getAttribute('data-name');
       } else {
         cart.push({id: productId, price, name});
       } 
-localStorage.setItem('cart', JSON.stringify(key));
       selected = true;
       saveCart();
       renderCart();
