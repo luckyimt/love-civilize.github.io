@@ -100,7 +100,7 @@ const name = product.getAttribute('data-name');
       if (existingItem || selected ) {
         alert("You can select 1 choice. To prevent overcharge rate.");
       } else {
-        cart.push({id: productId, price, name});
+        cart.push({id: productId, price, name , key});
       } 
       selected = true;
       saveCart();
