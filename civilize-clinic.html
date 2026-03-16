@@ -91,15 +91,14 @@ selectedCourse = "aesthetic";
 }
 
 const product = document.querySelector(`.image-grid[data-id='${productId}']`);
-
 const price = parseFloat(product.getAttribute('data-price'));
-const image = product.getAttribute('data-img');
-
+const name = product.getAttribute('data-name');
+      
       const existingItem = cart.find(item => item.id === productId );
       if (existingItem || selected ) {
         alert("You can select 1 choice. To prevent overcharge rate.");
       } else {
-        cart.push({ img:image, id: productId, price, key});
+        cart.push({id: productId, price, name});
       } 
 localStorage.setItem('cart', JSON.stringify(key));
       selected = true;
