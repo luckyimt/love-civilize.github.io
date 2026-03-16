@@ -99,9 +99,9 @@ const image = product.getAttribute('data-img');
       if (existingItem || selected ) {
         alert("You can select 1 choice. To prevent overcharge rate.");
       } else {
-        cart.push({ img:image, id: productId, price});
+        cart.push({ img:image, id: productId, price, key});
       } 
-localStorage.setItem(key, JSON.stringify(cart));
+localStorage.setItem('cart', JSON.stringify(key));
       selected = true;
       saveCart();
       renderCart();
@@ -131,14 +131,10 @@ document.getElementById('total').textContent = total.toFixed(2);
     }
 
 function saveCart() {
-localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-function loadCart(){
 const key = "cart_" + username;
-
-return JSON.parse(localStorage.getItem(key)) || [];
+localStorage.setItem('cart', JSON.stringify(key));
 }
+
 
 
 function loadCart() {
