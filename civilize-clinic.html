@@ -72,12 +72,14 @@ cosmetic</div>
 
 <script>
 let selectedCourse ="unselected";
+
 const username = localStorage.getItem('loggedInUser-c');
+const key = "cart_" + username;
+
 document.getElementById("userDisplay").textContent = username || "Guest";
 let selected = false;
 
 function addToCart(productId) {
-const key = "cart_" + username;
 let cart = JSON.parse(localStorage.getItem(key)) || [];
 
 if(productId==1){
@@ -107,7 +109,7 @@ const name = product.getAttribute('data-name');
 
 function removeFromCart(productId) {
       cart = cart.filter(item => item.id !== productId);
-selected = false;
+      selected = false;
       saveCart();
       renderCart();
     }
@@ -128,15 +130,14 @@ currentTotal = total;
 document.getElementById('total').textContent = total.toFixed(2);
     }
 
+
 function saveCart() {
-const key = "cart_" + username;
 localStorage.setItem('cart', JSON.stringify(key));
 }
 
 
 
 function loadCart() {
-const key = "cart_" + username;
       const stored = localStorage.getItem(key);
       if (stored) {
         cart = JSON.parse(stored);
@@ -146,7 +147,6 @@ const key = "cart_" + username;
 
 function logout() 
 {
-localStorage.clear();
     window.location.href = 'index.html';
 }
 </script>
