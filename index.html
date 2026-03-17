@@ -73,6 +73,15 @@ data-theme="outline">
 <script>
 // Helper: Get users from localStorage
 
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.onkeydown = function(e) {
+  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+    return false;
+  }
+};
+</script>
 
 function getUsers() {
   const users = localStorage.getItem('ecom_user');
