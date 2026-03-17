@@ -2,18 +2,10 @@
 <html>
 <head>
  <link rel="stylesheet" href="indexstyle.css">
-
-
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-
-
 </head>
 
-
 <body>
-
-
 <div class="background">
   <div class="hero"></div>
   <div class="form-toggle-container">
@@ -21,9 +13,6 @@
     <button id="loginBtn" class="toggle-buttons active">Login</button>
     <button id="signupBtn" class="toggle-buttons">Signup</button>
     </div>
-
-
-
 
 
 <h2>Login to Store</h2>
@@ -36,7 +25,6 @@ data-callback="handleLogin">
 data-size="large"
 data-theme="outline">
 </div>
-
 
 
 <section class="beauty-box">
@@ -69,6 +57,15 @@ data-theme="outline">
   </div>
 </div>
 
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.onkeydown = function(e) {
+  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+    return false;
+  }
+};
+</script>
 
 
 <script>
@@ -78,14 +75,9 @@ function getUsers() {
   return users ? JSON.parse(users) : {};
 }
 
-
-// Helper: Save users to localStorage
-
-
 function saveUsers(users) {
   localStorage.setItem('ecom_user', JSON.stringify(users));
 }
-
 
 // Signup Function
 function signup() {
@@ -111,23 +103,15 @@ function signup() {
 }
 
 
-// Login Function
 function login() {
-
-
-    event.preventDefault();
-    const username = document.getElementById("loginUsername-c").value;
-
+event.preventDefault();
+  const username = document.getElementById("loginUsername-c").value;
   const password = document.getElementById('loginPassword-c').value;
   const message = document.getElementById('message-c');
-
-
   const users = getUsers();
-
   if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
     localStorage.setItem('loggedInUser', username);
-
 
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
@@ -135,7 +119,6 @@ function login() {
     message.textContent = 'Invalid username or password.';
   }
 }
-
 </script>
 
 <script>
@@ -159,15 +142,7 @@ signupBtn.addEventListener('click', () => {
 });
 </script>
 
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
 
-document.onkeydown = function(e) {
-  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
-    return false;
-  }
-};
-</script>
 
 </body>
 </html>
