@@ -19,7 +19,7 @@ html,body {
   backdrop-filter: blur(10px);
   border-radius: 20%;
   color: white;
-  font-size: 16px;
+  font-size: 22px;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -27,13 +27,13 @@ html,body {
 }
 
 h1{
-font-size:18px;
+font-size:20px;
 color:white;
   border-radius: 20%;
 }
 
 h2 {
-font-size:16px;
+font-size:17px;
 color:white;
 border-radius: 20%;
 }
@@ -105,7 +105,7 @@ color:rgba(255,255,255,1);
 
 .sum {
 font-weight:bold;
-font-size: 16px;
+font-size: 18px;
 color:rgba(255,255,255,1);
 font-family:monospace;
 }
@@ -160,7 +160,7 @@ color:rgba(255,255,255,1);
   backdrop-filter: blur(10px);
   border-radius: 20%;
   color: white;
-  font-size: 15px;
+  font-size: 20px;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
