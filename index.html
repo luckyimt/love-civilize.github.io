@@ -3,10 +3,17 @@
 <head>
  <link rel="stylesheet" href="indexstyle.css">
 
+
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+
 </head>
 
+
 <body>
+
+
 <div class="background">
   <div class="hero"></div>
   <div class="form-toggle-container">
@@ -14,6 +21,10 @@
     <button id="loginBtn" class="toggle-buttons active">Login</button>
     <button id="signupBtn" class="toggle-buttons">Signup</button>
     </div>
+
+
+
+
 
 <h2>Login to Store</h2>
 <div id="g_id_onload"
@@ -26,8 +37,11 @@ data-size="large"
 data-theme="outline">
 </div>
 
+
+
 <section class="beauty-box">
-<div class="forms">
+
+  <div class="forms">
  <center><form id="loginForm" class="form active">
  <div class="input-group">
       <h2>Login</h2>
@@ -36,8 +50,8 @@ data-theme="outline">
       <button class="logout-button" onclick="login()">Login</button>
 </div>
     </form>
-    
- <form id="signupForm" class="form">
+
+    <form id="signupForm" class="form">
  <div class="input-group">
       <h2>Signup</h2>
       <input type="text" placeholder="Username" id="signupUsername-c" required />
@@ -57,12 +71,11 @@ data-theme="outline">
 
 
 <script>
-
-
+// Helper: Get users from localStorage
 
 
 function getUsers() {
-  const users = localStorage.getItem('users-c');
+  const users = localStorage.getItem('ecom_user');
   return users ? JSON.parse(users) : {};
 }
 
@@ -71,9 +84,8 @@ function getUsers() {
 
 
 function saveUsers(users) {
-  localStorage.setItem('users-c', JSON.stringify(users));
+  localStorage.setItem('ecom_user', JSON.stringify(users));
 }
-
 
 
 // Signup Function
@@ -93,8 +105,10 @@ function signup() {
     message.textContent = 'Username already exists.';
     return;
   }
+
   users[username] = password; // ❗ Storing password in plain text (for demo only)
   saveUsers(users);
+  message.textContent = 'Signup successful! You can now log in.';
 }
 
 
@@ -104,21 +118,17 @@ function login() {
 
     event.preventDefault();
     const username = document.getElementById("loginUsername-c").value;
-    sessionStorage.setItem("loginUsername-c", username);
 
   const password = document.getElementById('loginPassword-c').value;
   const message = document.getElementById('message-c');
 
-    if (!username || !password) {
-    message.textContent = 'Please fill in all fields.';
-    return;
-    }
 
   const users = getUsers();
 
   if (users[username] && users[username] === password) {
     // Optionally store logged-in user info
-    localStorage.setItem('loggedInUser-c', username);
+    localStorage.setItem('loggedInUser', username);
+
 
     // Redirect to your page
     window.location.href = 'civilize-clinic.html';  // 👈 CHANGE TO YOUR PAGE
@@ -129,8 +139,11 @@ function login() {
 
 </script>
 
-<script>
 
+
+
+
+<script>
 const loginBtn = document.getElementById('loginBtn');
 const signupBtn = document.getElementById('signupBtn');
 const loginForm = document.getElementById('loginForm');
@@ -149,20 +162,7 @@ signupBtn.addEventListener('click', () => {
   signupForm.classList.add('active');
   loginForm.classList.remove('active');
 });
-
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
