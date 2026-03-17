@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
+  
 <head>
- <link rel="stylesheet" href="mainstyle.css">
-
-<script src="/analytics.js"></script>
-
+  
+<link rel="stylesheet" href="mainstyle.css">
 <script src="https://www.paypal.com/sdk/js?client-id=ARf-RdlCTjnFCBXP-6s-dOK19oMSRmzdFHZ-PNUfHwecBnMksEhVVnaKPuIl-W3E8QyGOAdJnTwtG2-G&currency=USD"></script>
 
-
 </head>
+
 
 <body onload="loadCart()">
 
 <div class="menu">
-<h1 id="userDisplay"></h1>
-<button onclick="logout()"  class="logout-button">
-    <span class="logout-text">Logout</span>
-  </button>
+<h1>civilize clinic.</h1>
+<h2>20 yrs'of/n experience.</h2>
+<h2>welcome</h2>
+<h2 id="userDisplay"></h2>
+<button onclick="logout()"  class="logout-button">Logout</button>
 </div>
 
 <div class="perimeter">
@@ -28,8 +28,7 @@ Rhynoplasty</div>
 Filler</div>
 <div class="menu" onclick="showTab(2)">
 Aesthetic</div>
-<div id="cart" class="menu"></div>
-<div id="total" class="total"></div>
+<div id="cart" class="cart"></div>
 
 
 </div>
@@ -100,7 +99,6 @@ selectedCourse = "Filler";
 else if(productId==3){
 selectedCourse = "Aesthetic";
 }
-
 
 const product = document.querySelector(`.image-grid[data-id='${productId}']`);
       const name = product.getAttribute('data-name');
