@@ -30,7 +30,6 @@ Aesthetic</div>
 </div>
 
 <div class="right-column">
-
 <div class="tab-content active" >
 <div class="image-grid" data-id="1" data-img="nose.jpg" data-name="Rhynoplasty" data-price="249">
 <div class="image-card">
@@ -60,29 +59,20 @@ Aesthetic</div>
 </div>
 
 </div>
-
 </div>
-
 
 <script>
 
-const username = localStorage.getItem('loggedInUser');
-const key = "cart_civ"+username;
-
-document.getElementById("userDisplay").textContent = username || "Guest";
-
 let currentTotal = 0;
-
-let cart = JSON.parse(localStorage.getItem(key)) || [];
-
+let cart = [];
 let selectedCourse ="unselected";
-
 let selected = false;
 
 </script>
 
 
 <script>
+
 function addToCart(productId) 
 
 {
@@ -95,7 +85,6 @@ selectedCourse = "Filler";
 else if(productId==3){
 selectedCourse = "Aesthetic";
 }
-
 const product = document.querySelector(`.image-grid[data-id='${productId}']`);
       const name = product.getAttribute('data-name');
       const price = parseFloat(product.getAttribute('data-price'));
@@ -104,7 +93,7 @@ const image = product.getAttribute('data-img');
       if (existingItem || selected ) {
         alert("You can select 1 choice. To prevent overcharge rate.");
 }else {
-        cart.push({ img:image, id: productId, name, price , key});
+        cart.push({ img:image, id: productId, name, price });
 }
       selected=true;
       saveCart();
@@ -129,8 +118,6 @@ function renderCart()
  <center><button class="logout-button" onclick="removeFromCart(${item.id})">remove</button></center>
  <center><button class="logout-button" onclick="payNow()">get ticket</button></center>
 </div>
-
-
                 </div>
            `).join('');
 const total = cart.reduce((sum, item) => sum + item.price , 0);
@@ -139,23 +126,18 @@ document.getElementById('total').textContent = total.toFixed(2);
     }
 
 function saveCart() {
-localStorage.setItem('cart_civ', JSON.stringify(key));
+localStorage.setItem('cart_civ', JSON.stringify(cart));
 }
 
 function loadCart() {
-      const stored = localStorage.getItem(key);
+      const stored = localStorage.getItem(cart);
       if (stored) {
         cart = JSON.parse(stored);
         renderCart();
       }
     }
 
-function logout() 
-{
-    localStorage.removeItem("loggedInUser");
-    // Redirect to login page or home
-    window.location.href = 'index.html';
-}
+
 </script>
 
 
@@ -231,7 +213,6 @@ orderPlaceAlert(selectedCourse)
 }
 }
 
-
 function showTab(index) {
     const tabs = document.querySelectorAll('.menu');
     const contents = document.querySelectorAll('.tab-content');
@@ -261,7 +242,7 @@ else if(course=="Aesthetic"){
 ticketId = course;
 total=49;
 }
-window.location.href = `ticket.html?ticketId=${encodeURIComponent(ticketId)}&user=${encodeURIComponent(username)}&total=${encodeURIComponent(total)}`;
+window.location.href = `ticket.html?ticketId=${encodeURIComponent(ticketId)}&total=${encodeURIComponent(total)}`;
 }
 </script>
 
