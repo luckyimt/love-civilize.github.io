@@ -1,17 +1,19 @@
 html,body{
-
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 background-color:#121212;
-  font-family: 'Segoe UI', sans-serif;
+
  width:100%;
  height: 100dvh;
 overflow:hidden;
+
 }
 
-.pay-button{
+
+.pay-button span{
+
   display: flex;
   align-items: center;
   gap: 12px;
@@ -20,16 +22,31 @@ overflow:hidden;
   backdrop-filter: blur(10px);
   border-radius: 50px;
   color: white;
-  font-weight:bold;
-  font-size: 28px;
+  font-size: 24px;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-  }
+}
 
 
+.video-hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
 
+/* Video */
+.video-hero video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  min-width:100%;
+  min-height:100%;
+  transform:translate(-50%, -50%);
+  object-fit:cover;
+}
 
 /* Dark Overlay */
 .overlay{
@@ -40,15 +57,27 @@ overflow:hidden;
 }
 
 h1{
-font-size:24px;
+font-size:34px;
 color:white;
-
+background-image: repeating-linear-gradient(
+    120deg,
+    rgba(0, 200, 100, 0.2) 1px,
+    rgba(0, 255, 155, 0.5) 2px,
+    transparent 2px,
+    transparent 10px
   );
 }
 
 h2 {
-font-size:20px;
+font-size:42px;
 color:white;
+background-image: repeating-linear-gradient(
+    120deg,
+    rgba(0, 200, 100, 0.2) 1px,
+    rgba(0, 255, 155, 0.5) 2px,
+    transparent 2px,
+    transparent 10px
+  );
   
 }
 
@@ -62,12 +91,15 @@ border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .perimeter{
-  background-image: url("mainbg.jpg");
-background-size: 100% auto;   /* Width = 100%, Height auto (keeps ratio) */
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
+
+  background: url('mainbg.jpg') no-repeat center center/cover;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-y: auto;
+  font-family: 'Segoe UI', sans-serif;
 overflow-y:auto;
 overflow-x:hidden;
+ment: fixed; 
+
 display:flex;
 width:auto;
 height:100dvh;
@@ -77,31 +109,40 @@ height:100dvh;
 
 
 .text-box {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 200, 100, 0.2) 1px,
+    rgba(0, 255, 155, 0.5) 2px,
+    transparent 2px,
+    transparent 10px);
       border-radius: 8px;
       align-content:center;
       text-align: center;
     }
 
 .left-column {
-  font-size: 22px;
+
+
   width: 100%;
   display: flex;
   flex-direction:column;
   height: 100dvh;
   flex:1;
+
 }
 
 .left-column .row {
 color:rgba(255,255,255,1);
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #000;
   padding: 3px;
 }
 
 .right-column {
+  
   position:relative;
   width: auto;
   height: 100dvh;
-  border-left: 1px solid rgba(255, 255, 255, 0.88);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .grid {
@@ -121,7 +162,7 @@ color:rgba(255,255,255,1);
 
 .sum{
 font-weight:bold;
-font-size: 20px;
+font-size: 33px;
 color:rgba(255,255,255,1);
 font-family:monospace;
 }
@@ -132,26 +173,25 @@ display: grid;
   gap: 30px;
 }
 
+
 .tabs { 
       display:flex;
 }
 .total{
       font-weight:bold;
-  		font-size: 25px;
+  		font-size: 40px;
       font-family:monospace;
 color:rgba(255,255,255,1);
 }
 .menu{
-font-size:24px;
 padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
 display:flex;
 align-content:space-between;
 flex-direction:rows;
+  		font-size: 39px;
       font-weight:bold;
       font-family:monospace;
 color:rgba(255,255,255,1);
-
-
 }
 
 
@@ -237,14 +277,8 @@ padding:1rem;
   width: auto;
   height: 100dvh;
   display: block;
-opacity:0.724;
+opacity:0.64;
   border-radius: 20px;
   transition: opacity 0.3s ease;
 }
-
-
-
-
-
-
-
+}
