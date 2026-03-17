@@ -73,15 +73,7 @@ data-theme="outline">
 <script>
 // Helper: Get users from localStorage
 
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
 
-document.onkeydown = function(e) {
-  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
-    return false;
-  }
-};
-</script>
 <script>
 
 function getUsers() {
@@ -172,6 +164,16 @@ signupBtn.addEventListener('click', () => {
   signupForm.classList.add('active');
   loginForm.classList.remove('active');
 });
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.onkeydown = function(e) {
+  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+    return false;
+  }
+};
 </script>
 
 </body>
