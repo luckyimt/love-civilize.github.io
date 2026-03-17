@@ -49,9 +49,9 @@ border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .perimeter{
-
-  font-family: 'Segoe UI', sans-serif;
+font-family: 'Segoe UI', sans-serif;
 overflow-y:auto;
+border-radius: 20%;
 display:flex;
 width:auto;
 height:100dvh;
