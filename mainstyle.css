@@ -1,9 +1,9 @@
 html,body{
+ background: url('mainbg.jpg') no-repeat center center/cover;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-background-color:#121212;
 
  width:100%;
  height: 100dvh;
@@ -12,7 +12,7 @@ overflow:hidden;
 }
 
 
-.pay-button span{
+.pay-button{
 
   display: flex;
   align-items: center;
@@ -30,55 +30,17 @@ overflow:hidden;
 }
 
 
-.video-hero{
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-}
 
-/* Video */
-.video-hero video{
-  position:absolute;
-  top:50%;
-  left:50%;
-  min-width:100%;
-  min-height:100%;
-  transform:translate(-50%, -50%);
-  object-fit:cover;
-}
 
-/* Dark Overlay */
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.55);
-  z-index:1;
-}
 
 h1{
-font-size:34px;
+font-size:24px;
 color:white;
-background-image: repeating-linear-gradient(
-    120deg,
-    rgba(0, 200, 100, 0.2) 1px,
-    rgba(0, 255, 155, 0.5) 2px,
-    transparent 2px,
-    transparent 10px
-  );
 }
 
 h2 {
-font-size:42px;
+font-size:22px;
 color:white;
-background-image: repeating-linear-gradient(
-    120deg,
-    rgba(0, 200, 100, 0.2) 1px,
-    rgba(0, 255, 155, 0.5) 2px,
-    transparent 2px,
-    transparent 10px
-  );
-  
 }
 
 .tabmenu{
@@ -92,14 +54,8 @@ border-left: 1px solid rgba(255, 255, 255, 0.1);
 
 .perimeter{
 
-  background: url('mainbg.jpg') no-repeat center center/cover;
-  font-family: 'Segoe UI', sans-serif;
-  overflow-y: auto;
   font-family: 'Segoe UI', sans-serif;
 overflow-y:auto;
-overflow-x:hidden;
-ment: fixed; 
-
 display:flex;
 width:auto;
 height:100dvh;
@@ -109,20 +65,12 @@ height:100dvh;
 
 
 .text-box {
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(0, 200, 100, 0.2) 1px,
-    rgba(0, 255, 155, 0.5) 2px,
-    transparent 2px,
-    transparent 10px);
       border-radius: 8px;
       align-content:center;
       text-align: center;
     }
 
 .left-column {
-
-
   width: 100%;
   display: flex;
   flex-direction:column;
@@ -162,7 +110,7 @@ color:rgba(255,255,255,1);
 
 .sum{
 font-weight:bold;
-font-size: 33px;
+font-size: 25px;
 color:rgba(255,255,255,1);
 font-family:monospace;
 }
@@ -173,22 +121,23 @@ display: grid;
   gap: 30px;
 }
 
-
 .tabs { 
       display:flex;
 }
+
 .total{
       font-weight:bold;
   		font-size: 40px;
       font-family:monospace;
 color:rgba(255,255,255,1);
 }
+
 .menu{
 padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
 display:flex;
 align-content:space-between;
 flex-direction:rows;
-  		font-size: 39px;
+  		font-size: 25px;
       font-weight:bold;
       font-family:monospace;
 color:rgba(255,255,255,1);
@@ -209,14 +158,6 @@ color:rgba(255,255,255,1);
       border-radius:5px;
     }
 
-@keyframes float {
-      0%, 100% {
-        transform: scale(1) translateY(0);
-      }
-50% {
-        transform: scale(1.05) translateY(-10px);
-      }
-    }
 
 
 .logout-button {
@@ -228,7 +169,7 @@ color:rgba(255,255,255,1);
   backdrop-filter: blur(10px);
   border-radius: 50px;
   color: white;
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -245,6 +186,7 @@ color:rgba(255,255,255,1);
   transform: scale(0.96);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
+
 
 
 
@@ -268,7 +210,7 @@ padding:1rem;
 
 
 .image-card:hover {
-  transform: scale(1.18);
+  transform: scale(1.1);
   box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3);
 }
 
