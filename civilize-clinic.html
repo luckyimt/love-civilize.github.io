@@ -23,11 +23,11 @@
 
 <div class="left-column">
 <div class="menu" onclick="showTab(0)">
-nose</div>
+Rhynoplasty</div>
 <div class="menu" onclick="showTab(1)">
-lips</div>
+Filler</div>
 <div class="menu" onclick="showTab(2)">
-cosmetic</div>
+Aesthetic</div>
 <div id="cart" class="menu"></div>
 <div id="total" class="total"></div>
 <button onclick="payNow()"  class="logout-button">
@@ -38,28 +38,28 @@ cosmetic</div>
 <div class="right-column">
 
 <div class="tab-content active" >
-<div class="image-grid" data-id="1" data-img="nose.jpg" data-name="plastic surgery" data-price="249">
+<div class="image-grid" data-id="1" data-img="nose.jpg" data-name="Rhynoplasty" data-price="249">
 <div class="image-card">
 <center>
-<img src="nose.jpg" alt="plastic surgery" class="img-product" onclick="addToCart(1)">
+<img src="nose.jpg" alt="Rhynoplasty" class="img-product" onclick="addToCart(1)">
 </center>
 </div>
 </div>
 </div>
 <div class="tab-content" >
-<div class="image-grid" data-id="2" data-img="lips.jpg" data-name="lips" data-price="149">
+<div class="image-grid" data-id="2" data-img="lips.jpg" data-name="Filler" data-price="149">
 <div class="image-card">
 <center>
-<img src="lips.jpg" alt="lips fulfilment" class="img-product-lips" onclick="addToCart(2)">
+<img src="lips.jpg" alt="Filler" class="img-product-lips" onclick="addToCart(2)">
 </center>
 </div>
 </div>
 </div>
 <div class="tab-content">
-<div class="image-grid" data-id="3" data-img="aesthetic.jpg" data-name="aesthetic" data-price="49">
+<div class="image-grid" data-id="3" data-img="aesthetic.jpg" data-name="Aesthetic" data-price="49">
 <div class="image-card">
 <center>
-<img src="aesthetic.jpg" alt="youth" class="img-product" onclick="addToCart(3)">
+<img src="aesthetic.jpg" alt="Aesthetic" class="img-product" onclick="addToCart(3)">
 </center>
 </div>
 </div>
@@ -71,41 +71,53 @@ cosmetic</div>
 
 
 <script>
-let selectedCourse ="unselected";
 
-const username = localStorage.getItem('loggedInUser-c');
-const key = "cart_" + username;
+const username = localStorage.getItem('loggedInUser');
+const key = "cart_civ"+username;
 
 document.getElementById("userDisplay").textContent = username || "Guest";
-let selected = false;
 
-function addToCart(productId) {
+let currentTotal = 0;
+
 let cart = JSON.parse(localStorage.getItem(key)) || [];
 
+let selectedCourse ="unselected";
+
+let selected = false;
+
+</script>
+
+
+<script>
+function addToCart(productId) 
+{
+
 if(productId==1){
-selectedCourse = "plastic surgery";
+selectedCourse = "Rhynoplasty";
 }
 else if(productId==2){
-selectedCourse = "lips";
+selectedCourse = "Filler";
 }
 else if(productId==3){
-selectedCourse = "aesthetic";
+selectedCourse = "Aesthetic";
 }
 
+
 const product = document.querySelector(`.image-grid[data-id='${productId}']`);
-const price = parseFloat(product.getAttribute('data-price'));
-const name = product.getAttribute('data-name');
-      
-      const existingItem = cart.find(item => item.id === productId );
+      const name = product.getAttribute('data-name');
+      const price = parseFloat(product.getAttribute('data-price'));
+const image = product.getAttribute('data-img');
+       const existingItem = cart.find(item => item.id === productId );
       if (existingItem || selected ) {
         alert("You can select 1 choice. To prevent overcharge rate.");
-      } else {
-        cart.push({id: productId, price, name ,username, key});
-      } 
-      selected = true;
+}else {
+        cart.push({ img:image, id: productId, name, price , key});
+}
+      selected=true;
       saveCart();
       renderCart();
 }
+
 
 function removeFromCart(productId) {
       cart = cart.filter(item => item.id !== productId);
@@ -113,33 +125,29 @@ function removeFromCart(productId) {
       saveCart();
       renderCart();
     }
-    
+
 function renderCart() 
 {
    const cartContainer = document.getElementById('cart');
    cartContainer.innerHTML = cart.map(item => `
      <div class="cart-item">
-       <div>${item.name}</div><div class="sum">= $${item.price.toFixed(2)} 
- <button class="logout-button" onclick="removeFromCart(${item.id})">X</button>
+<img src="${item.img}" class='cart-img'></img>
+<div class="sum">= $${item.price.toFixed(2)} 
+ <button class="fire-button" onclick="removeFromCart(${item.id})">remove</button>
 </div>
                 </div>
-     `).join('');
-     const total = cart.reduce((sum, item) => sum + item.price , 0);
-
+           `).join('');
+const total = cart.reduce((sum, item) => sum + item.price , 0);
 currentTotal = total;
 document.getElementById('total').textContent = total.toFixed(2);
     }
 
-
 function saveCart() {
-localStorage.setItem('cart', JSON.stringify(key));
+localStorage.setItem('cart_civ', JSON.stringify(key));
 }
 
-
-
 function loadCart() {
-
-      const stored = localStorage.getItem('cart');
+      const stored = localStorage.getItem(key);
       if (stored) {
         cart = JSON.parse(stored);
         renderCart();
@@ -148,6 +156,8 @@ function loadCart() {
 
 function logout() 
 {
+    localStorage.removeItem("loggedInUser");
+    // Redirect to login page or home
     window.location.href = 'index.html';
 }
 </script>
@@ -178,11 +188,6 @@ app.post("/webhook/paypal", async (req, res) => {
     }
 }
 );
-</script>
-
-<script>
-let currentTotal = 0;
-let cart =  [];
 </script>
 
 <script>
@@ -229,6 +234,8 @@ orderPlaceAlert(selectedCourse)
 ;
 }
 }
+
+
 function showTab(index) {
     const tabs = document.querySelectorAll('.menu');
     const contents = document.querySelectorAll('.tab-content');
@@ -241,19 +248,19 @@ function showTab(index) {
 function orderPlaceAlert(course)
 {
 let total = 1;
-if(course=="plastic surgery"){
+if(course=="Rhynoplasty"){
     alert("pay $249. accept paypal users and credit cards.");
 ticketId = course;
 total=249;
 }
 
-else if(course=="lips"){
+else if(course=="Filler"){
     alert("pay $149. accept paypal users and credit cards.");
 ticketId = course;
 total=149;
 }
 
-else if(course=="aesthetic"){
+else if(course=="Aesthetic"){
     alert("pay $49. accept paypal users and credit cards.");
 ticketId = course;
 total=49;
