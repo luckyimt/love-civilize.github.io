@@ -29,13 +29,13 @@ html,body {
 h1{
 font-size:20px;
 color:white;
-  border-radius: 20%;
+  border-radius: 24%;
 }
 
 h2 {
 font-size:17px;
 color:white;
-border-radius: 20%;
+border-radius: 22%;
 }
 
 .tabmenu{
@@ -106,7 +106,7 @@ color:rgba(255,255,255,1);
 
 .sum {
 font-weight:bold;
-font-size: 18px;
+font-size: 16px;
 color:rgba(255,255,255,1);
 font-family:monospace;
 }
@@ -161,7 +161,7 @@ color:rgba(255,255,255,1);
   backdrop-filter: blur(10px);
   border-radius: 20%;
   color: white;
-  font-size: 20px;
+  font-size: 17px;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
