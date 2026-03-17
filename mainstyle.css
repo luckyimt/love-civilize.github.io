@@ -11,7 +11,6 @@ overflow:hidden;
 
 }
 
-
 .pay-button{
 
   display: flex;
@@ -28,9 +27,6 @@ overflow:hidden;
   transition: all 0.3s ease;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
-
-
-
 
 
 h1{
@@ -133,6 +129,16 @@ color:rgba(255,255,255,1);
 }
 
 .menu{
+padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
+display:flex;
+align-content:space-between;
+flex-direction:rows;
+  		font-size: 25px;
+      font-weight:bold;
+      font-family:monospace;
+color:rgba(255,255,255,1);
+}
+.cart{
 padding: clamp(1rem, 2vw, 2.5rem); /* Responsive space */
 display:flex;
 align-content:space-between;
