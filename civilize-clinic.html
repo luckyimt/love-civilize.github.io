@@ -113,8 +113,10 @@ function renderCart()
    const cartContainer = document.getElementById('cart');
    cartContainer.innerHTML = cart.map(item => `
      <div class="cart-item">
-<img src="${item.img}" class='cart-img'></img>
-<div class="sum">$${item.price.toFixed(2)} 
+    <center>
+<img src="${item.img}" class='cart-img'></img></center>
+<center><div class="sum">$${item.price.toFixed(2)} 
+</center>
  <center><button class="logout-button" onclick="removeFromCart(${item.id})">remove</button></center>
  <center><button class="logout-button" onclick="payNow()">get ticket</button></center>
 </div>
