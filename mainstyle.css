@@ -89,6 +89,14 @@ color:rgba(255,255,255,1);
   padding: 3px;
 }
 
+.left-column .row:hover{
+  border-radius: 20%;
+color:rgba(255,255,255,1);
+  border-bottom: 1px solid #000;
+  padding: 3px;
+  
+}
+
 
 
 .right-column {
